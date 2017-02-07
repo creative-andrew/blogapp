@@ -24,13 +24,13 @@ var blogSchema = new mongoose.Schema({
 var Blog = mongoose.model("Blog", blogSchema);
 
 
-Blog.create({
+/*Blog.create({
     title:'Primer Camp',
     image: 'https://images-na.ssl-images-amazon.com/images/G/01/img15/pet-products/small-tiles/23695_pets_vertical_store_dogs_small_tile_8._CB312176604_.jpg',
     body: 'Primer Post'
-});
+});*/
 
-
+//// INDEX
 app.get('/blogs', function (req, res) {
       Blog.find({}, function(err, allblogs){
         if (err) {
@@ -44,9 +44,22 @@ app.get('/blogs', function (req, res) {
         });
 
 
+app.post('/blogs', function(req, res){
+ Blog.create(req.body.blog, function(err, newBlog){
+   if (err){
+     console.log(err)
+   }
+   else {
+      res.redirect("/blogs")
+   }
+ })
+});
 
-
-
+////// NEW
+app.get('/blogs/new', function (req, res) {
+      
+          res.render('new');     
+        });
 
 app.listen(3000, function () {
   console.log('Blog app listening on port 3000!');

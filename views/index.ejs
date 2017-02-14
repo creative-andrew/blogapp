@@ -1,13 +1,45 @@
 <% include ./partials/header%> 
 
 
-<h1>Hello World </h1>
+<div class="ui main text container">
 
+
+<div class="ui huge header">Restful Blog App</div>
+<div class="ui top attached segment">
+<div class="ui divided items">
 
 <% allblogs.forEach(function (blogs) { %> 
+<div class="item">
+<div class="image centered"> <img src="<%= blogs.image %>"></div>
+
+</div>
+
+<div class="content">
+
 <h1> <%= blogs.title  %> </h1>
-<img src="<%= blogs.image %>">
-<h5> <%= blogs.created  %> </h1>
+<div class="meta"><span> <%= blogs.created  %> </span></div>
+<div class="description">
+<p> <%= blogs.body.substring(0, 100)  %>...</p>
+<a href='/blogs/<%= blogs._id%>'>  Read More </a></div>
+</div>
+
+
+
+
+
+
 <% }); %>
+
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
 
 <% include ./partials/footer%> 
